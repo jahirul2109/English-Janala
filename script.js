@@ -1,47 +1,14 @@
 const loginSection = document.getElementById('login-Section'); // Login Section
 const pass = document.getElementById('pass'); // Password 
+const learningSection = document.getElementById('learning');
+const qnSection = document.getElementById('qn');
+const footer = document.getElementById('ftr');// footer section
 const inputPass = pass.value;
 const userName = document.getElementById('userName') // Username input
 
-/**************** Get Password ***************/
-pass.addEventListener('input', (e) => {
-    e.preventDefault();
-    // filtering password only number is taken 
-    e.target.value = e.target.value.replace(/[^0-9]/g, "");
-})
-
-/************ Get Username **********/
-userName.addEventListener('input', (e) => {
-    e.preventDefault();
-    // filtering username number and speach in not taker
-    e.target.value = e.target.value.replace(/[^a-zA-Z*&_@#-*]/g, '')
-});
-
-/***************  Loging Button ********/
-const logingBtn = document.getElementById('loginBtn').addEventListener('click', (element) => {
-    element.preventDefault()
-    const header = document.getElementById('header'); // Header section 
-    header.classList.remove('md:backdrop-blur-none', 'md:static'); // remove some class in header section
-    const learningSection = document.getElementById('learning'); // Learing section
-    const cardCon = document.getElementById('cardCon'); // cardcontainer section 
-    const qnSection = document.getElementById('qn'); // Qn Section
-    const footer = document.getElementById('ftr');// footer section
-    footer.classList.add('md:py-20', 'py-10');
-    const convertedPass = parseInt(pass.value); // Password Coverted to number 
-
-    /** Username and password check*/
-    if (!userName.value == "") { // if username empty alert Empty username 
-        if (convertedPass === 1) { // Password check 
-            document.querySelector('body').removeChild(loginSection); // Remove Login Section
-
-            // Remove hidden class 
-            learningSection.classList.remove('hidden')
-            cardCon.classList.remove('hidden');
-            footer.classList.remove('hidden');
-            qnSection.classList.remove('hidden')
-
-            // When Login button fire auto fill Qn Section
-            qnSection.innerHTML = `
+// Dynamicaly loading Qn section
+function loadingQn() {
+    qnSection.innerHTML = `
                     <div class="w-11/12 flex flex-col items-center mx-auto py-10  ">
             <h1 class="font-bold text-2xl mb-16"> <span class="text-cyan-500">Frequently</span> Asked Questions</h1>
             <div id="collapseContainer" class="w-full flex flex-col gap-y-6">
@@ -90,9 +57,12 @@ const logingBtn = document.getElementById('loginBtn').addEventListener('click', 
             </div>
         </div>
             `;
-            // When Login button fire auto fill footer Section
-            footer.innerHTML = `
-                    <div class="w-11/12 flex flex-col mx-auto md:gap-y-4 gap-y-2 ">
+}
+
+// Dynamicaly loading footer section 
+function loadingFooter() {
+    footer.innerHTML = `
+            <div class="w-11/12 flex flex-col mx-auto md:gap-y-4 gap-y-2 ">
             <div class="flex items-center">
                 <p class="font-bold">English</p>
                 <a href="index.html">
@@ -106,6 +76,76 @@ const logingBtn = document.getElementById('loginBtn').addEventListener('click', 
             </div>
         </div>
             `
+}
+
+// when user is loggedin  after refresh page user stay  
+document.addEventListener("DOMContentLoaded", () => {
+    // if localStorage get "isLoggedin" is ture ,then login section is don't show 
+    if (localStorage.getItem("isLoggedIn") === "true") {
+        const header = document.getElementById('header');
+        const learningSection = document.getElementById('learning');
+        const cardCon = document.getElementById('cardCon');
+        const qnSection = document.getElementById('qn');
+        header.classList.remove('md:backdrop-blur-none', 'md:static');
+
+        // login section remove
+        document.querySelector('body').removeChild(loginSection);
+
+        // show other sections
+        learningSection.classList.remove('hidden');
+        cardCon.classList.remove('hidden');
+        footer.classList.remove('hidden');
+        qnSection.classList.remove('hidden');
+        loadingQn()
+        loadingFooter()
+
+    } else { // if result is false show login section
+        loginSection.classList.remove('hidden');
+    }
+
+});
+/**************** Get Password ***************/
+pass.addEventListener('input', (e) => {
+    e.preventDefault();
+    // filtering password only number is taken 
+    e.target.value = e.target.value.replace(/[^0-9]/g, "");
+})
+
+/************ Get Username **********/
+userName.addEventListener('input', (e) => {
+    e.preventDefault();
+    // filtering username number and speach in not taken
+    e.target.value = e.target.value.replace(/[^a-zA-Z*&_@#-*]/g, '')
+});
+
+/***************  Loging Button ********/
+const logingBtn = document.getElementById('loginBtn').addEventListener('click', (element) => {
+    element.preventDefault()
+    const header = document.getElementById('header'); // Header section 
+    header.classList.remove('md:backdrop-blur-none', 'md:static'); // remove some class in header section
+    const learningSection = document.getElementById('learning'); // Learing section
+    const cardCon = document.getElementById('cardCon'); // cardcontainer section 
+    const qnSection = document.getElementById('qn'); // Qn Section
+    const footer = document.getElementById('ftr');// footer section
+    footer.classList.add('md:py-20', 'py-10');
+    const convertedPass = parseInt(pass.value); // Password Coverted to number 
+
+    /** Username and password check*/
+    if (!userName.value == "") { // if username empty alert Empty username 
+        if (convertedPass === 1234) { // Password check 
+            localStorage.setItem("isLoggedIn", "true");
+            document.querySelector('body').removeChild(loginSection); // Remove Login Section
+
+            // Remove hidden class 
+            learningSection.classList.remove('hidden')
+            cardCon.classList.remove('hidden');
+            footer.classList.remove('hidden');
+            qnSection.classList.remove('hidden')
+
+            // When Login button fire auto fill Qn Section
+            loadingQn()
+            // When Login button fire auto fill footer Section
+            loadingFooter()
         } else {
 
             alert('Wrong Password')
@@ -119,7 +159,7 @@ const logingBtn = document.getElementById('loginBtn').addEventListener('click', 
 /************* Logout Section *************/
 const logoutBtn = document.getElementById('logoutBtn').addEventListener('click', (element) => {
     element.preventDefault()
-
+    localStorage.removeItem("isLoggedIn");
     pass.value = ''; // Defult password value empty
     userName.value = ''; // defult user value empty
     const learningSection = document.getElementById('learning');
@@ -213,7 +253,6 @@ function removeActive() {
 
 function displayLevel(datas) {
     const btnContainer = document.getElementById('btnContainer');
-    // console.log(datas)
     for (let data of datas) {
         // console.log(data)
         const btn = document.createElement('div');
@@ -226,10 +265,12 @@ function displayLevel(datas) {
 
 
 }
+
 const showWord = (datas) => {
     showLoader()
     removeActive()
-    const defultCard = document.getElementById('non-sec').classList.add('hidden')
+    document.getElementById('non-sec').classList.add('hidden')
+    // fecth data 
     const url = `https://openapi.programming-hero.com/api/level/${datas}`
     fetch(url)
         .then(res => res.json())
@@ -238,9 +279,8 @@ const showWord = (datas) => {
             clickedBtn.classList.add('active')
             const cardConater = document.getElementById('cardContainer');
             cardConater.classList.add('py-8')
-            console.log(resData)
             cardConater.innerHTML = ''
-            if (resData.data.length == 0) {
+            if (resData.data.length == 0) { // if resData has no data , then show this section
                 cardConater.innerHTML = `
             <div class="bg-gray-100 py-5 w-11/12 col-span-full mx-auto flex flex-col gap-y-4 justify-center items-center opacity-0 -translate-x-10
             -translate-y-10 transition-all duration-500">
@@ -249,6 +289,7 @@ const showWord = (datas) => {
             <h1 class="font-semibold text-3xl">নেক্সট Lesson এ যান</h1>
             </div>
             `
+            // set animation / smooth scrolling
                 setTimeout(() => {
                     cardConater.firstElementChild.classList.remove('opacity-0', '-translate-x-10', '-translate-y-10')
                 }, 200)
@@ -256,7 +297,6 @@ const showWord = (datas) => {
                 return;
             }
             resData.data.forEach((data, index) => {
-                console.log(data)
                 const card = document.createElement('div');
                 card.innerHTML = `
             <div id="card" class="flex flex-col  px-10 gap-y-10 py-10 h-80 bg-white rounded-lg shadow-sm opacity-0 -translate-x-10
