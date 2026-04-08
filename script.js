@@ -206,7 +206,7 @@ function wordDetails(id) {
                 </div>
                 <div>
                     <h1 class="py-2 font-semibold ">সমার্থক শব্দ গুলো</h1>
-                    <div id ="wordBtn">
+                    <div id ="wordBtn" class ="flex flex-wrap">
                     ${datas.data.synonyms.map(word => `<button class="btn mx-2 " onclick = "soundSys('${word}')">${word}</button>`).join('')}
                     </div>
                 </div>
