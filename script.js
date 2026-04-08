@@ -169,6 +169,8 @@ const logoutBtn = document.getElementById('logoutBtn').addEventListener('click',
 
     // append Login section and other section is hidden
     document.querySelector('body').appendChild(loginSection);
+    // displayed login section
+    loginSection.classList.remove('hidden');
     learningSection.classList.add('hidden')
     cardCon.classList.add('hidden');
     qnSection.classList.add('hidden')
