@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Janala</title>
+    <!-- Daisy Ui link -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- fontwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="">
+    <style>
+        .active {
+            background: rgba(24, 231, 231, 0.952);
+            color: white;
+        }
+    </style>
+    <header id="header"
+        class="bg-white/20 w-full flex justify-center items-center backdrop-blur-2xl md:backdrop-blur-none  sticky md:static  top-0 z-10 ">
+        <nav class="w-11/12 flex justify-between items-center py-2 md:py-5">
+            <div class="flex justify-center items-center">
+                <p class="font-bold hidden md:block">English</p>
+                <a href="index.html">
+                    <img src="assets/logo.png" alt="Windows Logo">
+                </a>
+                <p class="font-bold hidden md:block">Janala</p>
+            </div>
+            <div class="dropdown flex flex-col items-end w-4/12 md:hidden">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h7" />
+                    </svg>
+                </div>
+                <ul tabindex="-1"
+                    class="menu menu-sm dropdown-content bg-base-100 flex flex-col gap-y-2 rounded-box bg-gray-100 z-1 mt-3 w-40 p-2 shadow">
+                    <li class="border-1 border-gray-200"><a href="#qn">FAQ</a></li>
+                    <li class="border-1 border-gray-200"><a href="#learning">Learn</a></li>
+                    <li class="border-1 border-gray-200"><a href="index.html">Logout</a></li>
+                </ul>
+            </div>
+            <div class="hidden md:block z-50">
+                <a href="#qn"><button class="btn shadow-none text-cyan-500 border-cyan-500"><i
+                            class="fa-solid fa-circle-question"></i>FAQ</button></a>
+                <a href="#learn"><button class="btn shadow-none text-cyan-500 border-cyan-500"><i
+                            class="fa-solid fa-book"></i>Learn</button></a>
+                <a href="index.html"><button id="logoutBtn" class="btn shadow-none text-cyan-500 border-cyan-500"><i
+                            class="fa-solid fa-arrow-right-from-bracket rotate-180"></i>Logout</button></a>
+            </div>
+        </nav>
+    </header>
+    <!-- Login Section -->
+    <section id="login-Section" class="w-11/12 flex flex-col-reverse md:flex-row items-center  mx-auto bg-white ">
+        <div class="flex flex-col gap-5 md:w-3/6 w-full">
+            <h1 class="font-bold text-4xl"><span class="text-cyan-500">English</span> is Easy!!</h1>
+            <p>
+                আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা
+                <br> আপনার দক্ষতা বাড়াতে চান, আমাদের
+                Interactive Lessons আপনাকে নিয়ে যাবে অন্য একটি Level এ
+            </p>
+            <div class="w-8/12">
+                <form class="flex flex-col gap-3">
+                    <input id="userName" type="text" class="input outline-none" placeholder="Enter Your Name" />
+                    <input id="pass" type="password" class="input outline-none" placeholder="Enter(1-4)" />
+                    <button type="submit" id="loginBtn"
+                        class="btn bg-cyan-500 border-none w-3/8 btn-neutral mt-4">Login</button>
+                </form>
+            </div>
+        </div>
+        <div class="md:w-3/6 w-full ">
+            <img class="md:h-[500px]" src="assets/hero-student.png" alt="">
+        </div>
+    </section>
+
+    <!-- Learing Section -->
+    <section id="learning" class="hidden">
+        <div id="learn" class="w-11/12 mx-auto flex flex-col items-center gap-y-7 my-10">
+            <h1 class="font-bold text-2xl "><span class="text-cyan-500">Let's</span> learn Vocabularies</h1>
+            <div id="btnContainer" class="flex gap-3 flex-wrap justify-center">
+            </div>
+            <!-- Non seclect Section -->
+            <div class="bg-gray-100 py-10 px-8 rounded-lg w-full flex flex-col gap-4 text-center" id="non-sec">
+                <p class="text-gray-400">আপনি এখনো কোন Lesson Select করেন ন</p>
+                <h1 class="text-3xl font-bold">একটি Lesson Select করুন।</h1>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loader -->
+    <div id="loader" class="text-center hidden"><span
+            class="loading text-center loading-dots col-span-4 text-3xl  loading-xl"></span>
+    </div>
+
+    <!-- Seclect Section -->
+    <section id="cardCon" class="">
+        <div id="cardContainer"
+            class="bg-gray-100 grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-11/12 px-5  mx-auto gap-5">
+        </div>
+    </section>
+
+    <!-- Qn Section  -->
+    <section id="qn" class="mt-20 hidden mb-40">
+    </section>
+
+    <!-- footer -->
+    <footer id="ftr" class="bg-cyan-100 hidden w-full  ">
+    </footer>
+
+    <!-- You can open the modal using ID.showModal() method -->
+    <dialog id="my_modal_4" class="modal">
+    </dialog>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
