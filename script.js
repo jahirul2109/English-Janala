@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
         header.classList.remove('md:backdrop-blur-none', 'md:static');
 
         // login section remove
-        document.querySelector('body').removeChild(loginSection);
+        loginSection.classList.add('hidden');
 
         // show other sections
         learningSection.classList.remove('hidden');
@@ -134,7 +134,7 @@ const logingBtn = document.getElementById('loginBtn').addEventListener('click', 
     if (!userName.value == "") { // if username empty alert Empty username 
         if (convertedPass === 1234) { // Password check 
             localStorage.setItem("isLoggedIn", "true");
-            document.querySelector('body').removeChild(loginSection); // Remove Login Section
+            loginSection.classList.add('hidden'); // Remove Login Section
 
             // Remove hidden class 
             learningSection.classList.remove('hidden')
@@ -168,7 +168,7 @@ const logoutBtn = document.getElementById('logoutBtn').addEventListener('click',
     const footer = document.getElementById('ftr')
 
     // append Login section and other section is hidden
-    document.querySelector('body').appendChild(loginSection);
+    loginSection.classList.remove('hidden')
     // displayed login section
     loginSection.classList.remove('hidden');
     learningSection.classList.add('hidden')
