@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const learningSection = document.getElementById('learning');
         const cardCon = document.getElementById('cardCon');
         const qnSection = document.getElementById('qn');
-        header.classList.remove('md:backdrop-blur-none', 'md:static');
+
 
         // login section remove
         loginSection.classList.add('hidden');
@@ -291,7 +291,7 @@ const showWord = (datas) => {
             <h1 class="font-semibold text-3xl">নেক্সট Lesson এ যান</h1>
             </div>
             `
-            // set animation / smooth scrolling
+                // set animation / smooth scrolling
                 setTimeout(() => {
                     cardConater.firstElementChild.classList.remove('opacity-0', '-translate-x-10', '-translate-y-10')
                 }, 200)
