@@ -72,7 +72,7 @@ function loadingFooter() {
             </div>
             <div>
                 <p class="font-bold md:text-xl text-xs text-gray-500">ইংরেজি শিখুন সহজে</p>
-                <p class="text-gray-500">Providing ED-Tech Applications since 2025</p>
+                <p class="text-gray-500">Providing ED-Tech Applications since 2026</p>
             </div>
         </div>
             `

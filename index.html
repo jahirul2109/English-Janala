@@ -43,7 +43,7 @@
                     class="menu menu-sm dropdown-content bg-base-100 flex flex-col gap-y-2 rounded-box bg-gray-100 z-1 mt-3 w-40 p-2 shadow">
                     <li class="border-1 border-gray-200"><a href="#qn">FAQ</a></li>
                     <li class="border-1 border-gray-200"><a href="#learning">Learn</a></li>
-                    <li class="border-1 border-gray-200"><a href="index.html">Logout</a></li>
+                    <li id="logoutBtn" class="border-1 border-gray-200"><a href="#logoutBtn">Logout</a></li>
                 </ul>
             </div>
             <div class="hidden md:block z-50">
@@ -51,14 +51,14 @@
                             class="fa-solid fa-circle-question"></i>FAQ</button></a>
                 <a href="#learn"><button class="btn shadow-none text-cyan-500 border-cyan-500"><i
                             class="fa-solid fa-book"></i>Learn</button></a>
-                <a href="index.html"><button id="logoutBtn" class="btn shadow-none text-cyan-500 border-cyan-500"><i
+                <a href="#logoutBtn"><button id="logoutBtn" class="btn shadow-none text-cyan-500 border-cyan-500"><i
                             class="fa-solid fa-arrow-right-from-bracket rotate-180"></i>Logout</button></a>
             </div>
         </nav>
     </header>
     <!-- Login Section -->
      <div class="hidden my-10 md:my-0" id="login-Section">
-    <section  class=" w-11/12 flex flex-col-reverse md:flex-row items-center  mx-auto bg-white ">
+    <section  class=" w-11/12 flex flex-col-reverse md:flex-row md:items-end items-center  mx-auto bg-white ">
         <div class="flex flex-col md:items-start items-center  gap-5 md:w-3/6 w-full">
             <h1 class="font-bold text-4xl"><span class="text-cyan-500">English</span> is Easy!!</h1>
             <p class="text-center md:text-left">
